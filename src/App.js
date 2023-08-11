@@ -1,25 +1,56 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import SpeedInput from './components/SpeedInput';
+import SpeedMonitor from './components/SpeedMonitor';
 
 function App() {
+ const [speed,setSpeed]=React.useState();
+ const [scale,setScale]=React.useState("km");
+
+
+ const changeScaleTokm = (speed)=>{
+  setScale('km')
+  setSpeed(speed)
+ }
+
+ const changeScaleToMile = (speed) =>{
+  setScale('mi')
+  setSpeed(speed)
+ }
+
+ const kmToMi=(kmph)=>{
+  return kmph * 0.6213;
+ }
+
+ const miToKm = (miph)=>{
+  return miph / 0.6213;
+ }
+
+ let kmph;
+ let miph;
+ if(scale==='km'){
+  kmph=speed;
+  miph=kmToMi(speed);
+ }else{
+  kmph=miToKm(speed);
+  miph=speed;
+ }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+    <SpeedInput
+    speed={kmph}
+    scale='km'
+    changeSpeed={changeScaleTokm}
+    />
+    <SpeedInput 
+    speed={miph}
+    scale='mi'
+    changeSpeed={changeScaleToMile}
+    />
+
+    <SpeedMonitor speed={kmph}/>
     </div>
-  );
-}
+  )
+  }
 
 export default App;
