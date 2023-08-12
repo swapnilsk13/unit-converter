@@ -23,26 +23,26 @@ export default function Temperature(){
         return (fahrenheit - 32) * 5/9
     }
 
-    let cel;
-    let far;
+    let celsius;
+    let fahrenheit;
     if(scale==='celsius'){
-     cel=temperature;
-     far=celToFar(temperature);
+    celsius=temperature;
+    fahrenheit=celToFar(temperature);
     }else{
-     cel=farToCel(temperature);
-     far=temperature;
+    celsius=farToCel(temperature);
+    fahrenheit=temperature;
     }
 
 
     return(
         <div>
             <TemperatureInput
-            temperature={cel}
+            temperature={celsius}
             scale='celsius'
             onTempChange={changeScaleToCelsius}
             />
              <TemperatureInput
-            temperature={far}
+            temperature={fahrenheit}
             scale='fahrenheit'
             onTempChange={changeScaleToFahrenheit}
             />
