@@ -1,11 +1,16 @@
 
 *{
   align-items: center;
+  background-color: rgb(190, 207, 207);
 }
 .app{
   display: flex;
-  padding-left: 0px;
-  padding-top: 50px;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+h1{
+  font-family: 'Lobster Two', cursive;
+  font-size: 60px;
+  padding-top: -10px;
 }

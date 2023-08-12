@@ -1,56 +1,21 @@
-import './App.css';
-import React from 'react';
-import SpeedInput from './components/SpeedInput';
-import SpeedMonitor from './components/SpeedMonitor';
+import React from "react";
+import './App.css'
+import {Routes,Route} from 'react-router-dom'
+import Welcome from "./components/Welcome";
+import Speed from "./components/Speed";
+import Temperature from "./components/Temperature";
+import Links from "./components/Links";
 
-function App() {
- const [speed,setSpeed]=React.useState();
- const [scale,setScale]=React.useState("km");
-
-
- const changeScaleTokm = (speed)=>{
-  setScale('km')
-  setSpeed(speed)
- }
-
- const changeScaleToMile = (speed) =>{
-  setScale('mi')
-  setSpeed(speed)
- }
-
- const kmToMi=(kmph)=>{
-  return kmph * 0.6213;
- }
-
- const miToKm = (miph)=>{
-  return miph / 0.6213;
- }
-
- let kmph;
- let miph;
- if(scale==='km'){
-  kmph=speed;
-  miph=kmToMi(speed);
- }else{
-  kmph=miToKm(speed);
-  miph=speed;
- }
-  return (
-    <div className='app'>
-    <SpeedInput
-    speed={kmph}
-    scale='km'
-    changeSpeed={changeScaleTokm}
-    />
-    <SpeedInput 
-    speed={miph}
-    scale='mi'
-    changeSpeed={changeScaleToMile}
-    />
-
-    <SpeedMonitor speed={kmph}/>
+export default function App(){
+  return(
+    <div className="app">
+       <h1>Converter</h1>
+       <Links/>
+      <Routes>
+        <Route path='/' element={<Welcome/>}/>
+        <Route path="/speed" element={<Speed/>}/>
+        <Route path="/temperature" element={<Temperature/>}/>
+      </Routes>
     </div>
   )
-  }
-
-export default App;
+}
